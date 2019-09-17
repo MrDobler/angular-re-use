@@ -12,8 +12,7 @@ export class CategoryService {
     private readonly api: string = "api/categories";
 
     constructor(
-      private http: HttpClient, 
-      private headers: HttpHeaders
+      private http: HttpClient
     ) {}
 
     all(): Observable<Category[]> {
