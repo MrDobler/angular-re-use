@@ -17,7 +17,7 @@ export class EntryListComponent implements OnInit {
         this.isLoading = true;
         this.entryService.all().subscribe(
             entries => {
-                this.entries = entries;
+                this.entries = entries.sort((a, b) => b.id - a.id);
                 this.isLoading = false;
             },
             err => {

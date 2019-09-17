@@ -117,7 +117,7 @@
                     <div class="form-group col-md-3">
                         <label for="category_id">Categoria</label>
                         <select name="category_id" id="category_id" formControlName="category_id" class="form-control">
-                            <option *ngFor="let category of categories" value="category.id">{{ category.name }}</option>
+                            <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                         </select>
                         <div class="text-danger" *ngIf="entryForm.get('category_id').invalid && entryForm.get('category_id').touched">
                             <div *ngIf="entryForm.get('category_id').hasError('required')">
@@ -144,3 +144,12 @@
 
         <button type="submit" class="btn btn-primary float-right mt-3">Salvar</button>
     </form>
+<!-- 
+    <div class="col-md-3">
+    <div class="card mt-3">
+        <pre>
+            {{ entryForm.value | json }}
+        </pre>
+    </div>
+    </div>
+     -->
