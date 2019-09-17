@@ -6,6 +6,9 @@ import { EntryListComponent } from "./entry-list/entry-list.component";
 import { EntryFormComponent } from "./entry-form/entry-form.component";
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import { CalendarModule } from 'primeng/calendar';
+import { IMaskModule } from 'angular-imask';
+
 @NgModule({
     declarations: [
         EntryListComponent,
@@ -15,7 +18,9 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
         CommonModule,
         EntriesRoutingModule,
         ReactiveFormsModule,
-        FormsModule
+        FormsModule,
+        CalendarModule,
+        IMaskModule
     ]
 })
 export class EntriesModule {}

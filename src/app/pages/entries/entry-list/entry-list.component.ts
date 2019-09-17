@@ -28,7 +28,7 @@ export class EntryListComponent implements OnInit {
     }
 
     deleteEntry(entry: Entry) {
-        const mustConfirm = confirm("Excluir categoria?");
+        const mustConfirm = confirm("Excluir lançamento?");
 
         if (mustConfirm) {
             this.isLoading = true;
