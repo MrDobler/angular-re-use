@@ -1,3 +1,7 @@
+<div [ngClass]="{ 'loader-container': isLoading }">
+
+<img *ngIf="isLoading" src="../../../../assets/loader.gif" alt="loader">
+
 <nav class="mb-2">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a [routerLink]="[ '/' ]">Home</a></li>
@@ -17,7 +21,7 @@
         </div>
     </div>
 
-    <form [formGroup]="categoryForm" (submit)="onSubmit()">
+    <form [formGroup]="resourceForm" (submit)="onSubmit()">
         <div class="card">
             <div class="card-header">
                 Informações sobre a categoria
@@ -28,11 +32,11 @@
                     <div class="form-group col-md-4">
                         <label for="name">Nome</label>
                         <input formControlName="name" type="text" class="form-control" id="name">
-                        <div class="text-danger" style="font-size: 11px" *ngIf="categoryForm.get('name').invalid && categoryForm.get('name').touched">
-                            <div *ngIf="categoryForm.get('name').hasError('required')">
+                        <div class="text-danger" style="font-size: 11px" *ngIf="resourceForm.get('name').invalid && resourceForm.get('name').touched">
+                            <div *ngIf="resourceForm.get('name').hasError('required')">
                                 O campo <b>Nome</b> é obrigatório.
                             </div>
-                            <div *ngIf="categoryForm.get('name').hasError('minlength')">
+                            <div *ngIf="resourceForm.get('name').hasError('minlength')">
                                 O campo <b>Nome</b> deve ter no mínimo 3 caracteres.
                             </div>
                         </div>
@@ -55,4 +59,4 @@
 
         <button type="submit" class="btn btn-primary float-right mt-3">Salvar</button>
     </form>
-    
+</div>

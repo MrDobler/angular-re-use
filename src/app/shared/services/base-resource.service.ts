@@ -28,7 +28,7 @@ export abstract class BaseResourceService<T extends BaseResource> {
         const url = `${this.api}/${id}`
         return this.http.get(url).pipe(
             map(this.jsonDataToResource.bind(this)),
-            catchError(this.handleErrors)
+            catchError(this.handleErrors),
         );
     }
 
