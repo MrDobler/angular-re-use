@@ -4,16 +4,12 @@
 
     <app-bread-crumb [items]="breadCrumb"></app-bread-crumb>
 
-    <div class="row mb-4">
-        <div class="col-md">
-        <h1 class="h2 border-left pl-2">
-            {{ pageTitle }}
-        </h1>
-        </div>
-        <div class="col-md">
-            <a [routerLink]="[ '/categories' ]" class="btn btn-dark float-right">Voltar</a>
-        </div>
-    </div>
+    <app-page-header
+        [page-title]="pageTitle"
+        button-text="Voltar"
+        button-class="btn-dark"
+        button-link="/categories">
+    </app-page-header>
 
     <form [formGroup]="resourceForm" (submit)="onSubmit()">
         <div class="card">
