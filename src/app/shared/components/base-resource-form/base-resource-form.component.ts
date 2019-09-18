@@ -125,7 +125,7 @@ export abstract class BaseResourceFormComponent<T extends BaseResource>
         if (error.status === 422) {
             this.serverErrorMessages = JSON.parse(error._body).errors;
         } else {
-            this.serverErrorMessages = ["Falha na comunicação com o servidor. Tente mais tarde."];
+            this.serverErrorMessages = ['Falha na comunicação com o servidor. Tente mais tarde.'];
         }
     }
 

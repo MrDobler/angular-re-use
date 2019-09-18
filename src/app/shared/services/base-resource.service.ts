@@ -11,7 +11,7 @@ export abstract class BaseResourceService<T extends BaseResource> {
     protected http: HttpClient;
 
     constructor(
-        protected api: string, 
+        protected api: string,
         protected injector: Injector,
         protected jsonDataToResourceFn: (jsonData: any) => T) {
         this.http = injector.get(HttpClient);
@@ -48,7 +48,7 @@ export abstract class BaseResourceService<T extends BaseResource> {
     }
 
     delete(id: number): Observable<T> {
-        const url = `${this.api}/${id}`
+        const url = `${this.api}/${id}`;
         return this.http.delete(url).pipe(
             map(() => null),
             catchError(this.handleErrors)

@@ -10,15 +10,11 @@ interface BreadCrumbItem {
     templateUrl: './bread-crumb.component.html',
     styleUrls: ['./bread-crumb.component.css']
 })
-export class BreadCrumbComponent implements OnInit {
+export class BreadCrumbComponent {
 
     @Input() items: BreadCrumbItem[] = [];
 
     constructor() {
-    }
-
-    ngOnInit() {
-        console.log(this.items);
     }
 
     isLastItem(item: BreadCrumbItem): boolean {

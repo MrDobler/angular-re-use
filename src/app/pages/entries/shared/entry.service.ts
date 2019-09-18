@@ -14,17 +14,17 @@ import { BaseResourceService } from 'src/app/shared/services/base-resource.servi
 export class EntryService extends BaseResourceService<Entry> {
 
     constructor(
-        protected injector: Injector, 
+        protected injector: Injector,
         private categoryService: CategoryService
     ) {
-        super("api/entries", injector, Entry.fromJson)
+        super("api/entries", injector, Entry.fromJson);
     }
 
     create(entry: Entry): Observable<Entry> {
         return this.setCategoryAndSendToServer(entry, super.create.bind(this));
     }
 
-    update(entry: Entry): Observable<Entry> { 
+    update(entry: Entry): Observable<Entry> {
         return this.setCategoryAndSendToServer(entry, super.update.bind(this));
     }
 

@@ -26,25 +26,14 @@
                             <option value="" hidden></option>
                             <option *ngFor="let option of typeOptions" [value]="option.value">{{ option.text }}</option>
                         </select>
-                        <div class="text-danger" *ngIf="resourceForm.get('type').invalid && resourceForm.get('type').touched">
-                            <div *ngIf="resourceForm.get('type').hasError('required')">
-                                O campo <b>Tipo</b> é obrigatório.
-                            </div>
-                        </div>
+                        <app-form-field-error [form-control]="resourceForm.get('type')" control-name="Tipo"></app-form-field-error>
                     </div>
 
                     <!-- Name  -->
                     <div class="form-group col-md-5">
                         <label for="name">Lançamento</label>
                         <input formControlName="name" type="text" class="form-control" id="name">
-                        <div class="text-danger" *ngIf="resourceForm.get('name').invalid && resourceForm.get('name').touched">
-                            <div *ngIf="resourceForm.get('name').hasError('required')">
-                                O campo <b>Lançamento</b> é obrigatório.
-                            </div>
-                            <div *ngIf="resourceForm.get('name').hasError('minlength')">
-                                O campo <b>Lançamento</b> deve ter no mínimo 3 caracteres.
-                            </div>
-                        </div>
+                        <app-form-field-error [form-control]="resourceForm.get('name')" control-name="Lançamento"></app-form-field-error>
                     </div>
 
                     <!-- Amount  -->
@@ -57,14 +46,7 @@
                             <input [imask]="imaskConfig" formControlName="amount" type="text" class="form-control text-right" id="amount">
                         </div>
 
-                        <div class="text-danger" *ngIf="resourceForm.get('amount').invalid && resourceForm.get('amount').touched">
-                            <div *ngIf="resourceForm.get('amount').hasError('required')">
-                                O campo <b>Valor</b> é obrigatório.
-                            </div>
-                            <div *ngIf="resourceForm.get('amount').hasError('minlength')">
-                                O campo <b>Valor</b> deve ter no mínimo 3 caracteres.
-                            </div>
-                        </div>
+                        <app-form-field-error [form-control]="resourceForm.get('amount')" control-name="Valor"></app-form-field-error>
                     </div>
 
                     <!-- Date  -->
@@ -78,18 +60,14 @@
                             dateFormat="dd/mm/yy"
                             [locale]="ptBR"
                             [showButtonBar]="true"></p-calendar>
-                        <div class="text-danger" *ngIf="resourceForm.get('date').invalid && resourceForm.get('date').touched">
-                            <div *ngIf="resourceForm.get('date').hasError('required')">
-                                O campo <b>Data</b> é obrigatório.
-                            </div>
-                        </div>
+                        <app-form-field-error [form-control]="resourceForm.get('date')" control-name="Data"></app-form-field-error>
                     </div>
                 </div>
 
                 <div class="form-row">
                     <!-- Paid -->
                     <div class="form-group col-md-2">
-                        <label for="paid">Pago</label>
+                        <label>Pago</label>
                         <div class="btn-group">
                             <label
                                 [class.active]="resourceForm.get('paid').value === true"
@@ -100,11 +78,7 @@
                                 (click)="resourceForm.get('paid').setValue(false)"
                                 class="btn btn-outline-info paid">Pendente</label>
                         </div>
-                        <div class="text-danger" *ngIf="resourceForm.get('paid').invalid && resourceForm.get('paid').touched">
-                            <div *ngIf="resourceForm.get('paid').hasError('required')">
-                                O campo <b>Data</b> é obrigatório.
-                            </div>
-                        </div>
+                        <app-form-field-error [form-control]="resourceForm.get('paid')"></app-form-field-error>
                     </div>
 
                     <!-- Categoria  -->
@@ -113,16 +87,12 @@
                         <select name="category_id" id="category_id" formControlName="category_id" class="form-control">
                             <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                         </select>
-                        <div class="text-danger" *ngIf="resourceForm.get('category_id').invalid && resourceForm.get('category_id').touched">
-                            <div *ngIf="resourceForm.get('category_id').hasError('required')">
-                                O campo <b>Categoria</b> é obrigatório.
-                            </div>
-                        </div>
+                        <app-form-field-error [form-control]="resourceForm.get('category_id')" control-name="Categoria"></app-form-field-error>
                     </div>
 
                     <!-- Decription  -->
                     <div class="form-group col-md-7">
-                        <label for="name">Descrição</label>
+                        <label for="description">Descrição</label>
                         <input formControlName="description" type="text" class="form-control" id="description">
                     </div>
                 </div>
