@@ -1,4 +1,8 @@
-<nav class="mb-2">
+<div [ngClass]="{ 'loader-container': isLoading }">
+
+    <img *ngIf="isLoading" src="../../../../assets/loader.gif" alt="loader">
+    
+    <nav class="mb-2">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a [routerLink]="[ '/' ]">Home</a></li>
             <li class="breadcrumb-item"><a [routerLink]="[ '/entries' ]">Lançamentos</a></li>
@@ -17,7 +21,7 @@
         </div>
     </div>
 
-    <form [formGroup]="entryForm" (submit)="onSubmit()">
+    <form [formGroup]="resourceForm" (submit)="onSubmit()">
         <div class="card">
             <div class="card-header">
                 Informações sobre a categoria
@@ -32,22 +36,22 @@
                             <option value="" hidden></option>
                             <option *ngFor="let option of typeOptions" [value]="option.value">{{ option.text }}</option>
                         </select>
-                        <div class="text-danger" *ngIf="entryForm.get('type').invalid && entryForm.get('type').touched">
-                            <div *ngIf="entryForm.get('type').hasError('required')">
+                        <div class="text-danger" *ngIf="resourceForm.get('type').invalid && resourceForm.get('type').touched">
+                            <div *ngIf="resourceForm.get('type').hasError('required')">
                                 O campo <b>Tipo</b> é obrigatório.
                             </div>
                         </div>
                     </div>
 
-                     <!-- Name  -->
-                     <div class="form-group col-md-5">
+                    <!-- Name  -->
+                    <div class="form-group col-md-5">
                         <label for="name">Lançamento</label>
                         <input formControlName="name" type="text" class="form-control" id="name">
-                        <div class="text-danger" *ngIf="entryForm.get('name').invalid && entryForm.get('name').touched">
-                            <div *ngIf="entryForm.get('name').hasError('required')">
+                        <div class="text-danger" *ngIf="resourceForm.get('name').invalid && resourceForm.get('name').touched">
+                            <div *ngIf="resourceForm.get('name').hasError('required')">
                                 O campo <b>Lançamento</b> é obrigatório.
                             </div>
-                            <div *ngIf="entryForm.get('name').hasError('minlength')">
+                            <div *ngIf="resourceForm.get('name').hasError('minlength')">
                                 O campo <b>Lançamento</b> deve ter no mínimo 3 caracteres.
                             </div>
                         </div>
@@ -62,12 +66,12 @@
                             </div>
                             <input [imask]="imaskConfig" formControlName="amount" type="text" class="form-control text-right" id="amount">
                         </div>
-                       
-                        <div class="text-danger" *ngIf="entryForm.get('amount').invalid && entryForm.get('amount').touched">
-                            <div *ngIf="entryForm.get('amount').hasError('required')">
+                    
+                        <div class="text-danger" *ngIf="resourceForm.get('amount').invalid && resourceForm.get('amount').touched">
+                            <div *ngIf="resourceForm.get('amount').hasError('required')">
                                 O campo <b>Valor</b> é obrigatório.
                             </div>
-                            <div *ngIf="entryForm.get('amount').hasError('minlength')">
+                            <div *ngIf="resourceForm.get('amount').hasError('minlength')">
                                 O campo <b>Valor</b> deve ter no mínimo 3 caracteres.
                             </div>
                         </div>
@@ -84,8 +88,8 @@
                             dateFormat="dd/mm/yy"
                             [locale]="ptBR"
                             [showButtonBar]="true"></p-calendar>
-                        <div class="text-danger" *ngIf="entryForm.get('date').invalid && entryForm.get('date').touched">
-                            <div *ngIf="entryForm.get('date').hasError('required')">
+                        <div class="text-danger" *ngIf="resourceForm.get('date').invalid && resourceForm.get('date').touched">
+                            <div *ngIf="resourceForm.get('date').hasError('required')">
                                 O campo <b>Data</b> é obrigatório.
                             </div>
                         </div>
@@ -98,16 +102,16 @@
                         <label for="paid">Pago</label>
                         <div class="btn-group">
                             <label 
-                                [class.active]="entryForm.get('paid').value === true"
-                                (click)="entryForm.get('paid').setValue(true)"
+                                [class.active]="resourceForm.get('paid').value === true"
+                                (click)="resourceForm.get('paid').setValue(true)"
                                 class="btn btn-outline-info paid">Pago</label>
                             <label 
-                                [class.active]="entryForm.get('paid').value === false"
-                                (click)="entryForm.get('paid').setValue(false)"
+                                [class.active]="resourceForm.get('paid').value === false"
+                                (click)="resourceForm.get('paid').setValue(false)"
                                 class="btn btn-outline-info paid">Pendente</label>
                         </div>
-                        <div class="text-danger" *ngIf="entryForm.get('paid').invalid && entryForm.get('paid').touched">
-                            <div *ngIf="entryForm.get('paid').hasError('required')">
+                        <div class="text-danger" *ngIf="resourceForm.get('paid').invalid && resourceForm.get('paid').touched">
+                            <div *ngIf="resourceForm.get('paid').hasError('required')">
                                 O campo <b>Data</b> é obrigatório.
                             </div>
                         </div>
@@ -119,8 +123,8 @@
                         <select name="category_id" id="category_id" formControlName="category_id" class="form-control">
                             <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                         </select>
-                        <div class="text-danger" *ngIf="entryForm.get('category_id').invalid && entryForm.get('category_id').touched">
-                            <div *ngIf="entryForm.get('category_id').hasError('required')">
+                        <div class="text-danger" *ngIf="resourceForm.get('category_id').invalid && resourceForm.get('category_id').touched">
+                            <div *ngIf="resourceForm.get('category_id').hasError('required')">
                                 O campo <b>Categoria</b> é obrigatório.
                             </div>
                         </div>
@@ -144,12 +148,4 @@
 
         <button type="submit" class="btn btn-primary float-right mt-3">Salvar</button>
     </form>
-<!-- 
-    <div class="col-md-3">
-    <div class="card mt-3">
-        <pre>
-            {{ entryForm.value | json }}
-        </pre>
-    </div>
-    </div>
-     -->
+</div>

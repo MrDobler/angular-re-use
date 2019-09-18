@@ -1,23 +1,24 @@
+<div [ngClass]="{ 'loader-container': isLoading }">
 
-<nav class="mb-2">
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a [routerLink]="[ '/' ]">Home</a></li>
-        <li class="breadcrumb-item active">Categorias</li>
-    </ol>
-</nav>
+    <img class="loader-img" *ngIf="isLoading" src="../../../../assets/loader.gif" alt="loader">
 
-<div class="row mb-4">
-    <div class="col-md">
-    <h1 class="h2 border-left pl-2">
-        Categorias
-    </h1>
+    <nav class="mb-2">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a [routerLink]="[ '/' ]">Home</a></li>
+            <li class="breadcrumb-item active">Categorias</li>
+        </ol>
+    </nav>
+
+    <div class="row mb-4">
+        <div class="col-md">
+        <h1 class="h2 border-left pl-2">
+            Categorias
+        </h1>
+        </div>
+        <div class="col-md">
+        <a [routerLink]="[ 'form' ]" class="btn btn-success float-right">Nova Categoria</a>
+        </div>
     </div>
-    <div class="col-md">
-    <a [routerLink]="[ 'form' ]" class="btn btn-success float-right">Nova Categoria</a>
-    </div>
-</div>
-
-<div [ngClass]="{ 'table-container': isLoading }">
 
     <table class="table table-hover">
         <thead>
@@ -39,7 +40,7 @@
             </tr>
         </tbody>
     </table>
-    <img *ngIf="isLoading" src="../../../../assets/loader.gif" alt="loader">
+
 </div>
 
 
