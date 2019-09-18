@@ -10,7 +10,7 @@ import { BaseResourceListComponent } from 'src/app/shared/components/base-resour
     styleUrls: ["./entry-list.component.css"]
 })
 export class EntryListComponent extends BaseResourceListComponent<Entry> {
-    
+    breadCrumb = [{ text: 'Lançamentos', link: '' }];
     constructor(protected entryService: EntryService) {
         super(entryService);
     }

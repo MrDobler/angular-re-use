@@ -2,12 +2,7 @@
 
     <img class="loader-img" *ngIf="isLoading" src="../../../../assets/loader.gif" alt="loader">
 
-    <nav class="mb-2">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a [routerLink]="[ '/' ]">Home</a></li>
-            <li class="breadcrumb-item active">Lançamentos</li>
-        </ol>
-    </nav>
+    <app-bread-crumb [items]="breadCrumb"></app-bread-crumb>
 
     <div class="row mb-4">
         <div class="col-md">
@@ -40,8 +35,8 @@
                     {{ entry.category.name }}
                 </td>
                 <td class="text-right">
-                    <strong 
-                        [class.text-success]="entry.type === 'revenue'" 
+                    <strong
+                        [class.text-success]="entry.type === 'revenue'"
                         [class.text-danger]="entry.type === 'expense'">{{ 'R$ ' + entry.amount }}
                     </strong><br>
                     <span class="badge badge-light">{{ entry.paidText }}</span>

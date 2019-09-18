@@ -1,4 +1,4 @@
-import { Component, Injector, OnInit } from "@angular/core";
+import { AfterContentChecked, Component, Injector, OnInit } from '@angular/core';
 import { Validators } from "@angular/forms";
 
 import { Entry } from "../shared/entry.model";
@@ -14,10 +14,10 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
     templateUrl: "./entry-form.component.html",
     styleUrls: ["./entry-form.component.css"]
 })
-export class EntryFormComponent extends BaseResourceFormComponent<Entry> implements OnInit {
+export class EntryFormComponent extends BaseResourceFormComponent<Entry> implements OnInit, AfterContentChecked {
 
     categories: Category[] = [];
-
+    breadCrumb = [];
     imaskConfig = {
         mask: Number,
         scale: 2,
@@ -38,7 +38,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
         today: 'Hoje',
         clear: 'Limpar'
     };
-    
+
     constructor(
         protected entryService: EntryService,
         protected categoryService: CategoryService,
@@ -50,7 +50,21 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
         super.ngOnInit();
         this.loadCategories();
     }
-    
+
+    ngAfterContentChecked() {
+        this.setPageTitle();
+        this.breadCrumb = [
+            {
+                text: 'Lançamentos',
+                link: '/entries'
+            },
+            {
+                text: this.pageTitle,
+                link: ''
+            }
+        ];
+    }
+
     get typeOptions(): Array<any> {
         return Object.entries(Entry.types).map(
             ([value, text]) => {
@@ -83,7 +97,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
                 this.isLoading = false;
             },
             err => {
-                toastr.success("Erro ao carregar categorias");
+                toastr.success('Erro ao carregar categorias');
                 this.isLoading = false;
             }
         )
@@ -94,7 +108,7 @@ export class EntryFormComponent extends BaseResourceFormComponent<Entry> impleme
             const entryName = this.resource.name || '';
             this.pageTitle = 'Editando Lançamento: ' + entryName;
         } else {
-            this.pageTitle = 'Cadastro de Nova Lançamento';
+            this.pageTitle = 'Cadastro de Novo Lançamento';
         }
     }
 }

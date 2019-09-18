@@ -1,4 +1,4 @@
-import { Component, Injector } from "@angular/core";
+import { AfterContentChecked, Component, Injector } from '@angular/core';
 import { Validators } from "@angular/forms";
 
 import { Category } from "../shared/category.model";
@@ -10,7 +10,22 @@ import { BaseResourceFormComponent } from 'src/app/shared/components/base-resour
     templateUrl: "./category-form.component.html",
     styleUrls: ["./category-form.component.css"]
 })
-export class CategoryFormComponent extends BaseResourceFormComponent<Category> {
+export class CategoryFormComponent extends BaseResourceFormComponent<Category> implements  AfterContentChecked{
+    breadCrumb = [];
+
+    ngAfterContentChecked() {
+        this.setPageTitle();
+        this.breadCrumb = [
+            {
+                text: 'Categorias',
+                link: '/categories'
+            },
+            {
+                text: this.pageTitle,
+                link: ''
+            }
+        ];
+    }
 
     constructor(
         protected categoryService: CategoryService,

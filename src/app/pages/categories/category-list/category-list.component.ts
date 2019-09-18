@@ -10,7 +10,8 @@ import { BaseResourceListComponent } from 'src/app/shared/components/base-resour
     styleUrls: ["./category-list.component.css"]
 })
 export class CategoryListComponent extends BaseResourceListComponent<Category> {
-    isLoading = false;
+
+    breadCrumb = [ { text: 'Categorias', link: '' } ];
     constructor(protected categoryService: CategoryService) {
         super(categoryService);
     }
