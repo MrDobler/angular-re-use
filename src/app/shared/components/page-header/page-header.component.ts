@@ -10,6 +10,7 @@ export class PageHeaderComponent implements OnInit {
     @Input('button-class') btnClass: string;
     @Input('button-text') btnText: string;
     @Input('button-link') btnLink: string;
+    @Input('show-button') showButton: boolean = true;
 
     constructor() {
     }
